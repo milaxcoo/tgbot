@@ -19,7 +19,7 @@ def get(message):
 
 #get image by keyword
 @bot.message_handler(content_types=['text'])
-def get(message):
+def gett(message):
     r = requests.get('https://api.thecatapi.com/v1/images/search?breed_ids=' + message.text)
     url = r.json()[0]['url']
     bot.send_photo(message.chat.id, url)
