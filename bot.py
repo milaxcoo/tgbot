@@ -38,4 +38,8 @@ def callback_inline(call):
             elif call.data == 'dog':
                 bot.send_photo(call.message.chat.id, 'https://source.unsplash.com/category/dogs')
 
+
+    except Exception as e:
+        print(repr(e))
+        
 bot.infinity_polling()
