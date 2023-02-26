@@ -1,5 +1,5 @@
-import config
 import telebot
+import config
 
 bot = telebot.TeleBot(config.token)
 
@@ -9,5 +9,3 @@ def start(message):
 
 if __name__ == '__main__':
     bot.polling(none_stop=True)
-
-# Path: config.py
