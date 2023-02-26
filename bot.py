@@ -13,14 +13,14 @@ def start(message):
 #get random image
 @bot.message_handler(commands=['randomcat'])
 def get(message):
-    r = requests.get('https://aws.random.cat/meow')
+    r = requests.get('https://aws.random.cat/meow', timeout=5)
     url = r.json()['file']
     bot.send_photo(message.chat.id, url)
 
 #get image by keyword
 @bot.message_handler(content_types=['text'])
 def gett(message):
-    r = requests.get('https://source.unsplash.com/random/?{0}', message.text)
+    r = requests.get('https://source.unsplash.com/random/?{0}' + message.text, timeout=5)
     url = r.url
     bot.send_photo(message.chat.id, url)
 
