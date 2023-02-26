@@ -20,7 +20,6 @@ def get(message):
 #get image by keyword
 @bot.message_handler(content_types=['text'])
 def gett(message):
-    r 
     r = requests.get('https://source.unsplash.com/random/?{0}', message.text)
     url = r.url
     bot.send_photo(message.chat.id, url)
