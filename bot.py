@@ -54,8 +54,9 @@ def callback_inline(call):
                 bot.send_photo(call.message.chat.id, 'https://source.unsplash.com/random/?arch')
             #remove inline buttons
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Выберите категорию:", reply_markup=None)
+            
             #show alert
-            bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text="Картинка найдена!")
+            bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text="Это тестовое уведомление!!11")
     except Exception as e:
         print(repr(e))
 
