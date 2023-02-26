@@ -9,6 +9,6 @@ def start(message):
 
 @bot.message_handler(func=lambda message: True)
 def echo(message):
-    bot.reply_to(message, message.text)
+    bot.send_message(message, message.text)
 
 bot.infinity_polling()
