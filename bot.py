@@ -11,10 +11,10 @@ def start(message):
 
 
 
-#find random image by keyword from google for each request
+#find random image for every message
 @bot.message_handler(content_types=['text'])
 def send_image(message):
-    bot.send_message(message.chat.id, 'I am searching for image...')
-    bot.send_photo(message.chat.id, 'https://source.unsplash.com/random/800x600')
+    bot.send_photo(message.chat.id, 'https://picsum.photos/200/300/?random')
+
 
 bot.infinity_polling()
