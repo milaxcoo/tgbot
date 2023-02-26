@@ -11,11 +11,19 @@ def start(message):
     bot.send_message(message.chat.id, 'Hello, {0.first_name}!\nI am - <b>{1.first_name}</b>, the bot created to find pics fo u.'.format(message.from_user, bot.get_me()), parse_mode='html')
 
 #get random image
-@bot.message_handler(commands=['get'])
+@bot.message_handler(commands=['randomcat'])
 def get(message):
     r = requests.get('https://aws.random.cat/meow')
     url = r.json()['file']
     bot.send_photo(message.chat.id, url)
+
+#get image by keyword
+@bot.message_handler(content_types=['text'])
+def get(message):
+    r = requests.get('https://api.thecatapi.com/v1/images/search?breed_ids=' + message.text)
+    url = r.json()[0]['url']
+    bot.send_photo(message.chat.id, url)
+
 
 
 
