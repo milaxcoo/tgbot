@@ -7,4 +7,8 @@ bot = telebot.TeleBot(config.TOKEN)
 def start(message):
     bot.reply_to(message, "Sup, bro?")
 
+@bot.message_handler(func=lambda message: True)
+def echo(message):
+    bot.send_message(message, message.text)
+
 bot.infinity_polling()
