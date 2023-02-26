@@ -11,7 +11,7 @@ def start(message):
     bot.send_message(message.chat.id, 'Привет, {0.first_name}!\nЯ - <b>{1.first_name}</b>, помогу тебе с поиском картинки.'.format(message.from_user, bot.get_me()), parse_mode='html')
 
 #find image
-@bot.message_handler(content_types=['text'])
+@bot.message_handler(commands=['findpic'])
 def find_image(message):
     #keyboard
     markup = types.InlineKeyboardMarkup(row_width=2)
@@ -32,22 +32,7 @@ def callback_inline(call):
     try:
         if call.message:
             if call.data == 'cat':
-                bot.send_message(call.message.chat.id, 'https://www.google.com')
-            elif call.data == 'dog':
-                bot.send_message(call.message.chat.id, 'https://www.google.com')
-            elif call.data == 'people':
-                bot.send_message(call.message.chat.id, 'https://www.google.com')
-            elif call.data == 'nature':
-                bot.send_message(call.message.chat.id, 'https://www.google.com')
-            elif call.data == 'car':
-                bot.send_message(call.message.chat.id, 'https://www.google.com')
-            elif call.data == 'space':
-                bot.send_message(call.message.chat.id, 'https://www.google.com')
-            elif call.data == 'food':
-                bot.send_message(call.message.chat.id, 'https://www.google.com')
-            elif call.data == 'sport':
-                bot.send_message(call.message.chat.id, 'https://www.google.com')
-
+                bot.send_photo(call.message.chat.id, 'https://i.imgur.com/1ZQZ1Zm.jpg')
             #remove inline buttons
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Выбери категорию:", reply_markup=None)
 
@@ -57,6 +42,6 @@ def callback_inline(call):
     except Exception as e:
         print(repr(e))
 
-        
+
 
 bot.infinity_polling()
