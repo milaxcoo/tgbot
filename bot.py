@@ -14,4 +14,4 @@ def echo(message):
 
 
 bot.polling()
-//bot.infinity_polling()
+#bot.infinity_polling()
