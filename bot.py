@@ -11,12 +11,17 @@ def start(message):
 
 
 
-#find image from google by keyword
+#find random image for each request
 @bot.message_handler(content_types=['text'])
-def find_image(message):
-    bot.send_message(message.chat.id, 'Searching for image...')
-    bot.send_photo(message.chat.id, 'https://www.google.com/search?q={0}&tbm=isch'.format(message.text))
+def send_image(message):
+    if message.chat.type == 'private':
+        if message.text == 'cat':
+            bot.send_photo(message.chat.id, open('cat.jpg', 'rb'))
+        elif message.text == 'dog':
+            bot.send_photo(message.chat.id, open('dog.jpg', 'rb'))
+        else:
+            bot.send_message(message.chat.id, 'I don\'t understand you.')
 
-    
+
 
 bot.infinity_polling()
