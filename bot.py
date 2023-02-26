@@ -1,10 +1,10 @@
-import config
 import telebot
+import config
 
 bot = telebot.TeleBot(config.TOKEN)
 
-@bot.message_handler(commands=['start'])
+@bot.message_handler(content_types=['text'])
 def start(message):
-    bot.send_message(message.chat.id, 'Привет, я бот, который умеет считать слова в тексте. Отправь мне текст, а я посчитаю слова в нем.')
+    bot.send_message(message.chat.id, message.text)
 
 bot.polling(none_stop=True)
