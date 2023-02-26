@@ -14,8 +14,8 @@ def start(message):
 @bot.message_handler(commands=['findpic'])
 def findpic(message):
     markup = types.InlineKeyboardMarkup(row_width=2)
-    item1 = types.InlineKeyboardButton("Котики", callback_data='cat')
-    item2 = types.InlineKeyboardButton("Собачки", callback_data='dog')
+    item1 = types.InlineKeyboardButton("Котики", callback_data='cats')
+    item2 = types.InlineKeyboardButton("Собачки", callback_data='dogs')
     item3 = types.InlineKeyboardButton("Люди", callback_data='people')
     item4 = types.InlineKeyboardButton("Природа", callback_data='nature')
     item5 = types.InlineKeyboardButton("Автомобили", callback_data='cars')
@@ -33,13 +33,17 @@ def findpic(message):
 def callback_inline(call):
     try:
         if call.message:
-            if call.data == 'cat':
-                bot.send_photo(call.message.chat.id, 'https://source.unsplash.com/category/cats')
-            elif call.data == 'dog':
-                bot.send_photo(call.message.chat.id, 'https://source.unsplash.com/category/dogs')
+            if call.data == 'cats':
+                bot.send_photo(call.message.chat.id, 'https://source.unsplash.com/random/?cat,cats')
+            elif call.data == 'dogs':
+                bot.send_photo(call.message.chat.id, 'https://source.unsplash.com/random/?dog,dogs')
+            elif call.data == 'people':
+                bot.send_photo(call.message.chat.id, 'https://source.unsplash.com/random/?people')
+            elif call.data == 'nature':
+                bot.send_photo(call.message.chat.id, 'https://source.unsplash.com/random/?nature')
 
 
     except Exception as e:
         print(repr(e))
-        
+
 bot.infinity_polling()
