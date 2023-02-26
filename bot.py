@@ -3,8 +3,15 @@ import config
 
 bot = telebot.TeleBot(config.TOKEN)
 
-@bot.message_handler(content_types=['text'])
+@bot.message_handler(commands=['start', 'help'])
 def start(message):
-    bot.send_message(message.chat.id, message.text)
+    bot.reply_to(message, "Sup, bro?")
 
-bot.polling(none_stop=True)
+
+@bot.message_handler(func=lambda m: True)
+def echo(message):
+    bot.reply_to(message, message.text)
+
+
+bot.polling()
+//bot.infinity_polling()
