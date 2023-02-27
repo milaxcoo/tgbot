@@ -37,31 +37,50 @@ def get_image(message):
             markup.add(item1, item2)
             bot.send_photo(message.chat.id, url, reply_markup=markup)
             
-
         elif message.text == 'Cats':
             r = requests.get('https://source.unsplash.com/random/?cats', timeout=5)
             url = r.url
-            bot.send_photo(message.chat.id, url)
+            markup = telebot.types.InlineKeyboardMarkup(row_width=2)
+            item1 = telebot.types.InlineKeyboardButton("👍", callback_data='like')
+            item2 = telebot.types.InlineKeyboardButton("👎", callback_data='dislike')
+            markup.add(item1, item2)
+            bot.send_photo(message.chat.id, url, reply_markup=markup)
 
         elif message.text == 'Dogs':
             r = requests.get('https://source.unsplash.com/random/?dogs', timeout=5)
             url = r.url
-            bot.send_photo(message.chat.id, url)
+            markup = telebot.types.InlineKeyboardMarkup(row_width=2)
+            item1 = telebot.types.InlineKeyboardButton("👍", callback_data='like')
+            item2 = telebot.types.InlineKeyboardButton("👎", callback_data='dislike')
+            markup.add(item1, item2)
+            bot.send_photo(message.chat.id, url, reply_markup=markup)
             
         elif message.text == 'Nature':
             r = requests.get('https://source.unsplash.com/random/?nature', timeout=5)
             url = r.url
-            bot.send_photo(message.chat.id, url)
+            markup = telebot.types.InlineKeyboardMarkup(row_width=2)
+            item1 = telebot.types.InlineKeyboardButton("👍", callback_data='like')
+            item2 = telebot.types.InlineKeyboardButton("👎", callback_data='dislike')
+            markup.add(item1, item2)
+            bot.send_photo(message.chat.id, url, reply_markup=markup)
             
         elif message.text == 'Food':
             r = requests.get('https://source.unsplash.com/random/?food', timeout=5)
             url = r.url
-            bot.send_photo(message.chat.id, url)
+            markup = telebot.types.InlineKeyboardMarkup(row_width=2)
+            item1 = telebot.types.InlineKeyboardButton("👍", callback_data='like')
+            item2 = telebot.types.InlineKeyboardButton("👎", callback_data='dislike')
+            markup.add(item1, item2)
+            bot.send_photo(message.chat.id, url, reply_markup=markup)
            
         elif message.text == 'Cars':
             r = requests.get('https://source.unsplash.com/random/?cars', timeout=5)
             url = r.url
-            bot.send_photo(message.chat.id, url)
+            markup = telebot.types.InlineKeyboardMarkup(row_width=2)
+            item1 = telebot.types.InlineKeyboardButton("👍", callback_data='like')
+            item2 = telebot.types.InlineKeyboardButton("👎", callback_data='dislike')
+            markup.add(item1, item2)
+            bot.send_photo(message.chat.id, url, reply_markup=markup)
             
         elif message.text == 'Own keyword':
             bot.send_message(message.chat.id, 'Type your keyword:')
@@ -73,7 +92,11 @@ def get_image(message):
 def get_keyword(message):
     r = requests.get('https://source.unsplash.com/random/?{0}'.format(message.text), timeout=5)
     url = r.url
-    bot.send_photo(message.chat.id, url)
+    markup = telebot.types.InlineKeyboardMarkup(row_width=2)
+    item1 = telebot.types.InlineKeyboardButton("👍", callback_data='like')
+    item2 = telebot.types.InlineKeyboardButton("👎", callback_data='dislike')
+    markup.add(item1, item2)
+    bot.send_photo(message.chat.id, url, reply_markup=markup)
     
 #like/dislike
 @bot.callback_query_handler(func=lambda call: True)
