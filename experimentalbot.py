@@ -32,8 +32,8 @@ def get_image(message):
             url = r.url
             #inline keyboard
             markup = telebot.types.InlineKeyboardMarkup(row_width=2)
-            item1 = telebot.types.InlineKeyboardButton("👍 Like", callback_data='like')
-            item2 = telebot.types.InlineKeyboardButton("👎 Dislike", callback_data='dislike')
+            item1 = telebot.types.InlineKeyboardButton("Like", callback_data='like')
+            item2 = telebot.types.InlineKeyboardButton("Dislike", callback_data='dislike')
             markup.add(item1, item2)
             bot.send_photo(message.chat.id, url, reply_markup=markup)
             
@@ -75,20 +75,20 @@ def get_keyword(message):
     url = r.url
     bot.send_photo(message.chat.id, url)
     
-#like or dislike
+#like/dislike
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
     try:
         if call.message:
             if call.data == 'like':
-                bot.send_message(call.message.chat.id, 'We like that you like!')
+                bot.send_message(call.message.chat.id, 'Thank you for your feedback!')
             elif call.data == 'dislike':
-                bot.send_message(call.message.chat.id, 'Try again!')
+                bot.send_message(call.message.chat.id, 'Thank you for your feedback!')
             #remove inline buttons
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="👍👎", reply_markup=None)
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Choose one letter:", reply_markup=None)
             #show alert
-            bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text="This is alert text")
+            bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text="This is test alert")
     except Exception as e:
         print(repr(e))
-
+        
 bot.infinity_polling()
