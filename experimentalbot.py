@@ -36,6 +36,7 @@ def get_image(message):
             item1 = telebot.types.InlineKeyboardButton("👍", callback_data='like')
             item2 = telebot.types.InlineKeyboardButton("👎", callback_data='dislike')
             markup.add(item1, item2)
+            bot.send_message(message.chat.id, 'Do you like this pic?', reply_markup=markup)
         elif message.text == 'Cats':
             r = requests.get('https://source.unsplash.com/random/?cats', timeout=5)
             url = r.url
