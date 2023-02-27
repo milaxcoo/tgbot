@@ -2,10 +2,9 @@ import telebot
 import config
 import requests
 
-
 bot = telebot.TeleBot(config.TOKEN)
 
-@bot.message_handler(commands=['start', 'help'])
+@bot.message_handler(commands=['start'])
 def start(message):
     #welcome
     bot.send_message(message.chat.id, 'Hello, {0.first_name}!\nI am - <b>{1.first_name}</b>, the bot created to find pics fo u!'.format(message.from_user, bot.get_me()), parse_mode='html')
@@ -20,8 +19,7 @@ def start(message):
     item6 = telebot.types.KeyboardButton("🚗 Cars")
     item7 = telebot.types.KeyboardButton("Own Keyword")
     markup.add(item1, item2, item3, item4, item5, item6, item7)
-    bot.send_message(message.chat.id, 'Choose one letter:', reply_markup=markup)
-
+    bot.send_message(message.chat.id, 'Choose the type below ↓', reply_markup=markup)
 
 #get image by keyboard
 @bot.message_handler(content_types=['text'])
@@ -87,7 +85,6 @@ def get_image(message):
             bot.register_next_step_handler(message, get_keyword)
         else:
             bot.send_message(message.chat.id, 'I don\'t understand you. Please, choose one letter from the keyboard.')
-
 
 def get_keyword(message):
     r = requests.get('https://source.unsplash.com/random/?{0}'.format(message.text), timeout=5)
