@@ -85,10 +85,12 @@ def callback_inline(call):
             elif call.data == 'dislike':
                 bot.send_message(call.message.chat.id, 'Thank you for your feedback!')
             #remove inline buttons
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Choose one letter:", reply_markup=None)
+            #bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=None, reply_markup=None)
+            #remove inline buttons from message
+            bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id, reply_markup=None)
             #show alert
             bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text="This is test alert")
     except Exception as e:
         print(repr(e))
-        
+
 bot.infinity_polling()
