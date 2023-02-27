@@ -12,13 +12,13 @@ def start(message):
 
     #keyboard
     markup = telebot.types.ReplyKeyboardMarkup()
-    item1 = telebot.types.KeyboardButton("Random pic")
-    item2 = telebot.types.KeyboardButton("Cats")
-    item3 = telebot.types.KeyboardButton("Dogs")
-    item4 = telebot.types.KeyboardButton("Nature")
-    item5 = telebot.types.KeyboardButton("Food")
-    item6 = telebot.types.KeyboardButton("Cars")
-    item7 = telebot.types.KeyboardButton("Own keyword")
+    item1 = telebot.types.KeyboardButton("🎲 Random")
+    item2 = telebot.types.KeyboardButton("🐈‍⬛ Cats")
+    item3 = telebot.types.KeyboardButton("🐕 Dogs")
+    item4 = telebot.types.KeyboardButton("🌹 Nature")
+    item5 = telebot.types.KeyboardButton("🍔 Food")
+    item6 = telebot.types.KeyboardButton("🚗 Cars")
+    item7 = telebot.types.KeyboardButton("Own Keyword")
     markup.add(item1, item2, item3, item4, item5, item6, item7)
     bot.send_message(message.chat.id, 'Choose one letter:', reply_markup=markup)
 
@@ -27,7 +27,7 @@ def start(message):
 @bot.message_handler(content_types=['text'])
 def get_image(message):
     if message.chat.type == 'private':
-        if message.text == 'Random pic':
+        if message.text == '🎲 Random':
             r = requests.get('https://source.unsplash.com/random', timeout=5)
             url = r.url
             #inline keyboard
@@ -37,7 +37,7 @@ def get_image(message):
             markup.add(item1, item2)
             bot.send_photo(message.chat.id, url, reply_markup=markup)
             
-        elif message.text == 'Cats':
+        elif message.text == '🐈‍⬛ Cats':
             r = requests.get('https://source.unsplash.com/random/?cats', timeout=5)
             url = r.url
             markup = telebot.types.InlineKeyboardMarkup(row_width=2)
@@ -46,7 +46,7 @@ def get_image(message):
             markup.add(item1, item2)
             bot.send_photo(message.chat.id, url, reply_markup=markup)
 
-        elif message.text == 'Dogs':
+        elif message.text == '🐕 Dogs':
             r = requests.get('https://source.unsplash.com/random/?dogs', timeout=5)
             url = r.url
             markup = telebot.types.InlineKeyboardMarkup(row_width=2)
@@ -55,7 +55,7 @@ def get_image(message):
             markup.add(item1, item2)
             bot.send_photo(message.chat.id, url, reply_markup=markup)
             
-        elif message.text == 'Nature':
+        elif message.text == '🌹 Nature':
             r = requests.get('https://source.unsplash.com/random/?nature', timeout=5)
             url = r.url
             markup = telebot.types.InlineKeyboardMarkup(row_width=2)
@@ -64,7 +64,7 @@ def get_image(message):
             markup.add(item1, item2)
             bot.send_photo(message.chat.id, url, reply_markup=markup)
             
-        elif message.text == 'Food':
+        elif message.text == '🍔 Food':
             r = requests.get('https://source.unsplash.com/random/?food', timeout=5)
             url = r.url
             markup = telebot.types.InlineKeyboardMarkup(row_width=2)
@@ -73,7 +73,7 @@ def get_image(message):
             markup.add(item1, item2)
             bot.send_photo(message.chat.id, url, reply_markup=markup)
            
-        elif message.text == 'Cars':
+        elif message.text == '🚗 Cars':
             r = requests.get('https://source.unsplash.com/random/?cars', timeout=5)
             url = r.url
             markup = telebot.types.InlineKeyboardMarkup(row_width=2)
@@ -82,7 +82,7 @@ def get_image(message):
             markup.add(item1, item2)
             bot.send_photo(message.chat.id, url, reply_markup=markup)
             
-        elif message.text == 'Own keyword':
+        elif message.text == 'Own Keyword':
             bot.send_message(message.chat.id, 'Type your keyword:')
             bot.register_next_step_handler(message, get_keyword)
         else:
