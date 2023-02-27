@@ -20,7 +20,6 @@ def start(message):
     item6 = telebot.types.KeyboardButton("Cars")
     item7 = telebot.types.KeyboardButton("Own keyword")
     markup.add(item1, item2, item3, item4, item5, item6, item7)
-
     bot.send_message(message.chat.id, 'Choose one letter:', reply_markup=markup)
 
 
@@ -32,7 +31,11 @@ def get_image(message):
             r = requests.get('https://source.unsplash.com/random', timeout=5)
             url = r.url
             bot.send_photo(message.chat.id, url)
-            
+            #inline keyboard
+            markup = telebot.types.InlineKeyboardMarkup(row_width=2)
+            item1 = telebot.types.InlineKeyboardButton("👍", callback_data='like')
+            item2 = telebot.types.InlineKeyboardButton("👎", callback_data='dislike')
+            markup.add(item1, item2)
         elif message.text == 'Cats':
             r = requests.get('https://source.unsplash.com/random/?cats', timeout=5)
             url = r.url
@@ -52,10 +55,7 @@ def get_image(message):
             r = requests.get('https://source.unsplash.com/random/?food', timeout=5)
             url = r.url
             bot.send_photo(message.chat.id, url)
-            markup = telebot.types.InlineKeyboardMarkup(row_width=2)
-            item1 = telebot.types.InlineKeyboardButton("Like", callback_data='like')
-            item2 = telebot.types.InlineKeyboardButton("Dislike", callback_data='dislike')
-            markup.add(item1, item2)
+           
         elif message.text == 'Cars':
             r = requests.get('https://source.unsplash.com/random/?cars', timeout=5)
             url = r.url
@@ -66,6 +66,7 @@ def get_image(message):
             bot.register_next_step_handler(message, get_keyword)
         else:
             bot.send_message(message.chat.id, 'I don\'t understand you. Please, choose one letter from the keyboard.')
+
 
 def get_keyword(message):
     r = requests.get('https://source.unsplash.com/random/?{0}'.format(message.text), timeout=5)
@@ -81,12 +82,10 @@ def callback_inline(call):
                 bot.send_message(call.message.chat.id, 'Thank you for your feedback!')
             elif call.data == 'dislike':
                 bot.send_message(call.message.chat.id, 'Thank you for your feedback!')
-            # remove inline buttons
+            #remove inline buttons
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Choose one letter:", reply_markup=None)
-
-            # show alert
+            #show alert
             bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text="This is test alert")
-
     except Exception as e:
         print(repr(e))
 
