@@ -11,7 +11,7 @@ def start(message):
     bot.send_message(message.chat.id, 'Hello, {0.first_name}!\nI am - <b>{1.first_name}</b>, the bot created to find pics fo u!'.format(message.from_user, bot.get_me()), parse_mode='html')
 
     #keyboard
-    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+    markup = telebot.types.ReplyKeyboardMarkup()
     item1 = telebot.types.KeyboardButton("Random pic")
     item2 = telebot.types.KeyboardButton("Cats")
     item3 = telebot.types.KeyboardButton("Dogs")
