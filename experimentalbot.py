@@ -32,8 +32,8 @@ def get_image(message):
             url = r.url
             #inline keyboard
             markup = telebot.types.InlineKeyboardMarkup(row_width=2)
-            item1 = telebot.types.InlineKeyboardButton("👍", callback_data='like')
-            item2 = telebot.types.InlineKeyboardButton("👎", callback_data='dislike')
+            item1 = telebot.types.InlineKeyboardButton("👍 Like", callback_data='like')
+            item2 = telebot.types.InlineKeyboardButton("👎 Dislike", callback_data='dislike')
             markup.add(item1, item2)
             bot.send_photo(message.chat.id, url, reply_markup=markup)
             
