@@ -36,10 +36,7 @@ def get_image(message):
             item2 = telebot.types.InlineKeyboardButton("👎", callback_data='dislike')
             markup.add(item1, item2)
             bot.send_photo(message.chat.id, url, reply_markup=markup)
-            #remove inline buttons
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Choose one letter:", reply_markup=None)
-            #show alert
-            bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text="This is test alert")
+            
 
         elif message.text == 'Cats':
             r = requests.get('https://source.unsplash.com/random/?cats', timeout=5)
@@ -87,6 +84,10 @@ def callback_inline(call):
                 bot.send_message(call.message.chat.id, 'We like that you like!')
             elif call.data == 'dislike':
                 bot.send_message(call.message.chat.id, 'Try again!')
+            #remove inline buttons
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="👍👎", reply_markup=None)
+            #show alert
+            bot.answer_callback_query(callback_query_id=call.id, show_alert=False, text="This is alert text")
     except Exception as e:
         print(repr(e))
 
