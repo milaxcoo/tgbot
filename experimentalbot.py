@@ -8,7 +8,7 @@ bot = telebot.TeleBot(config.TOKEN)
 @bot.message_handler(commands=['start', 'help'])
 def start(message):
     #welcome
-    bot.send_message(message.chat.id, 'Hello, {0.first_name}!\nI am - <b>{1.first_name}</b>, the bot created to find pics fo u!\nJust type only one keyword!'.format(message.from_user, bot.get_me()), parse_mode='html')
+    bot.send_message(message.chat.id, 'Hello, {0.first_name}!\nI am - <b>{1.first_name}</b>, the bot created to find pics fo u!\n'.format(message.from_user, bot.get_me()), parse_mode='html')
 
     #keyboard
     markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
