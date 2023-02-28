@@ -81,7 +81,7 @@ def get_image(message):
             bot.send_photo(message.chat.id, url, reply_markup=markup)
             
         elif message.text == '🔎 Search':
-            bot.send_message(message.chat.id, 'Type your keyword:')
+            bot.send_message(message.chat.id, 'What we\'re searching for?')
             bot.register_next_step_handler(message, get_keyword)
         else:
             bot.send_message(message.chat.id, 'I don\'t understand you. Please, choose one letter from the keyboard.')
@@ -101,9 +101,9 @@ def callback_inline(call):
     try:
         if call.message:
             if call.data == 'like':
-                bot.send_message(call.message.chat.id, 'We like what you like!')
+                bot.send_message(call.message.chat.id, '☺️')
             elif call.data == 'dislike':
-                bot.send_message(call.message.chat.id, 'Try again!')
+                bot.send_message(call.message.chat.id, '🧐')
             #remove inline buttons from message
             bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id, reply_markup=None)
             #show alert
