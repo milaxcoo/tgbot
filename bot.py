@@ -17,7 +17,7 @@ def start(message):
     item4 = telebot.types.KeyboardButton("🌹 Nature")
     item5 = telebot.types.KeyboardButton("🍔 Food")
     item6 = telebot.types.KeyboardButton("🚗 Cars")
-    item7 = telebot.types.KeyboardButton("Own Keyword")
+    item7 = telebot.types.KeyboardButton("🔎 Search")
     markup.add(item1, item2, item3, item4, item5, item6, item7)
     bot.send_message(message.chat.id, 'Choose the type below ↓', reply_markup=markup)
 
@@ -80,7 +80,7 @@ def get_image(message):
             markup.add(item1, item2)
             bot.send_photo(message.chat.id, url, reply_markup=markup)
             
-        elif message.text == 'Own Keyword':
+        elif message.text == '🔎 Search':
             bot.send_message(message.chat.id, 'Type your keyword:')
             bot.register_next_step_handler(message, get_keyword)
         else:
